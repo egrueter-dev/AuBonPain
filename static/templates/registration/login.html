@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+    <div class="login-register">
+
+        <div class="row">
+            <div class="large-4 medium-12 large-offset-4 columns">
+                <h3 class="page-title"><span>Login</span></h3>
+                <form method="post" action="." class="remove-labels">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <input type="submit" value="{% trans 'Log in' %}" class="small button large-12" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+
+                    <div class="clearfix"></div>
+                </form>
+
+                <a href="{% url 'social:begin' 'facebook' %}" class='social_meadia_account_button large-12' id="facebook-button">Register with Facebook</a>
+                <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+                <p>{% trans "Not a member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_page_javascript %}
+    <script type="text/javascript" >
+    $(document).ready(function(){
+        $("#id_username").attr('placeholder', '{{form.username.label}}');
+        $("#id_password").attr('placeholder', '{{form.password.label}}');
+    });
+</script>
+{% endblock footer_page_javascript %}
+
+

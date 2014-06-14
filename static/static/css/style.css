@@ -1,0 +1,106 @@
+* {
+    padding: 0; /* Standard Reset, and we're adding box-sizing:border-box because it's awesome. */
+    margin: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.top-bar, .top-bar-section ul  {
+    background-color: #ffffff;
+}
+
+.top-bar {
+    border-bottom: 1px solid #979797;
+}
+
+.remove-labels label {
+    display: none;
+}
+
+form input[type=text], form input[type=email] {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.button {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.top-bar-section ul li > a.button.white-button {
+    background-color:#ffffff;
+    color: #0a2248;
+    border:1px solid #979797;
+}
+
+.fullwidth {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: inherit;
+}
+
+.header-signup-form {
+    background-image: url('../images/blue_header.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+    padding:3rem 0;
+    border-bottom: 10px solid #0a2248;
+}
+.footer-signup-form {
+    padding:3rem 0;
+}
+
+.extramargin {
+    margin:2rem 0;
+}
+
+.extramargin-small {
+    margin:2rem 0;
+}
+
+.blue_background {
+    background-color:#f8fafd;
+}
+
+.white {
+    color:#ffffff;
+}
+
+.page-title {
+    font-weight:200;
+}
+
+p, a {
+    font-weight:200;
+    letter-spacing: .1rem;
+}
+
+.home-content p {
+    font-size: 1.5rem;
+    margin-top: 4rem;
+}
+
+h5.title {
+    font-size: 1.8rem;
+}
+
+.footer {
+    background-color:#55a1ea;
+    border-top: 10px solid #0a2248;
+    padding: 1rem 0 4rem 0;
+}
+
+.top-bar .name h1 a:before {
+    background-image: url('../images/logo.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+    content: "";
+    display: inline-block;
+    height: 60px;
+    margin-right: 10px;
+    position: relative;
+    width: 270px;
+}

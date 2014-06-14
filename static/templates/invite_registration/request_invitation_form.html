@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block header_snippets %}
+    <style type="text/css" media="screen">
+        body{
+            background-color: #C0DEED;
+            margin:0;
+            padding:0;
+        }
+
+        #container{
+            height:100%;
+            background: transparent url('{{ STATIC_URL }}images/19_web_scroll_dark.jpg') repeat-y scroll left top;
+            background-size: cover;
+            text-align:center;
+            margin-top:-30px;
+        }
+
+        #header{
+            height: 7rem;
+        }
+
+        #content{
+            background-color:transparent;
+            height:100%;
+            width:980px;
+            margin:25px auto 0 auto;
+            margin-top: 3rem;
+
+        }
+
+        .home-beta-content {
+            position: relative;
+            padding: 2rem 3rem
+        }
+
+        .home-beta-content p {
+            font-weight:300;
+        }
+    </style>
+{% endblock header_snippets %}
+
+{% if not user.is_authenticated %}
+    {% block header%}
+        {% include "snippets/header.html" %}
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+    <div id="container">
+        <div id="header">
+        </div><!-- #header -->
+
+        <div id="content large-8 large-offset-2">
+            <!-- Your content will go here -->
+            <div class="large-6 large-offset-3 white-background home-beta-content">
+                <h2 class="page-title"><span>Are you ready for the future of emerging fashion?</span></h2>
+                <p class="text-center">
+                    Nineteenth Amendment is a fashion marketplace for emerging designers.  We manufacture the garments on behalf of our designers and give shoppers exclusive access to USA made, independent designer fashion
+                </p>
+
+                <p class="text-center">
+                    Shop exclusive fashion, not found anywhere else.  Directly support and interact with the next wave of fashion designers.
+                </p>
+
+                <p class="text-center">
+                    Sign up now and you'll have front row seats when the collections launch in May!
+                </p>
+            </div>
+            <div class="large-6 large-offset-3 white-background home-beta-content remove-padding">
+
+                <form action="" method="post" class="remove-labels">{% csrf_token %}
+                    <div class="large-10 large-offset-1 white-background remove-padding" style="height:5rem;">
+                        <div class="large-7 left remove-padding columns">
+                            {{ form_class}}
+                        </div>
+                        <div class="large-5 right remove-padding columns">
+                            <input type="submit" class="inverted-button" style="color:#ffffff;padding:.65rem 1rem;font-weight:100;" value="Request Invite" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- #content -->
+    </div><!-- #container -->
+
+
+
+{% endblock content %}
+
+{% block footer_page_javascript %}
+    <script type="text/javascript" charset="utf-8">
+        var scrollSpeed = .0005; 		// Speed in milliseconds
+        var step = .5; 				// How many pixels to move per step
+        var current = 0;			// The current pixel row
+        var imageWidth = 2247;		// Background image width
+        var headerWidth = 1280;		// How wide the header is.
+        var imageHeight = 5000;		// Background image width
+        var headerHeight = 700;		// How wide the header is.
+
+        //The pixel row where to start a new loop
+        var restartPosition = -(imageHeight - headerHeight);
+
+        function scrollBg(){
+            //Go to next pixel row.
+            current -= step;
+
+            //If at the end of the image, then go to the top.
+            if (current == restartPosition){
+                clearInterval(init);
+            }
+
+            //Set the CSS of the header.
+            $('#container').css("background-position","0 " + current + "px");
+        }
+
+        //Calls the scrolling function repeatedly
+        var init = setInterval("scrollBg()", scrollSpeed);
+    </script>
+{% endblock footer_page_javascript %}

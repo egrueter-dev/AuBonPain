@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block content %}
+
+    <div id="content" class="clearfix">
+
+        <div class="container">
+
+
+            <div class="not-found">
+                <div class="search-404 large-4 medium-6 large-offset-4 medium-offset-3 small-12">
+                    <h3 class="page-title text-center"><span>{% trans "You have been logged out" %}</span></h3>
+                </div>
+                <!-- /.search-404 -->
+                <!-- /.offset4 -->
+
+
+            </div>
+            <!-- /#main -->
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /#content -->
+
+{% endblock content %}

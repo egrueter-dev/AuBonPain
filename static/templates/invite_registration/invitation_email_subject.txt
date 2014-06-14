@@ -1,0 +1,1 @@
+{{ invitation.user.username|lower|capfirst }} invited you to join Nineteenth Amendment!

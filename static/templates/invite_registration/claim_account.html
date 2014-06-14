@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="large-12 black-background text-center how-it-works" style="padding:0 2rem 2rem 2rem;">
+        <h2 class="how-it-works-title how-it-works-main-title white featured-col large-10 large-offset-1" id="claim_title">We've Chosen you to determine the future of fashion at Nineteenth Amendment.</h2>
+        <div class="black-background">
+            <p class="large-6 large-offset-3" id="claim_desc_text">
+                We've gathered the top emerging fashion designers from across the globe.  Now it's your turn to determine who makes it big.<br/>
+                All looks are made exclusively for you, in the USA.
+            </p>
+        </div>
+    </div>
+    <div class="large-12" id="claim_account_start">
+        <div class="large-6 large-offset-3">
+            <h3 class="page-title text-center white"><span>Claim your invite<br/>to determine the future of fashion.</span></h3>
+        </div>
+        <div class="large-4 large-offset-4 extramargin text-center">
+            <a href="{% url 'social:begin' 'facebook' %}" id="facebook-button" class='social_meadia_account_button large-8 medium-6 small-10 claim_account_extra_thick'><h5 class="white page-title"><span>Sign up with Facebook</span></h5></a>
+            <h3 class="page-title text-center white"><span>or</span></h3>
+            <form action="{% url 'claim_account_ajax' %}" method="post" class="remove-labels" id="claim_account">{% csrf_token %}
+                <input type="text" name="username"  value="{{ new_user.username }}" title="Username" readonly />
+                <input type="text" name="first_name" value="{{ new_user.first_name }}" title="First Name" placeholder="First Name" />
+                <input type="text" name="last_name" value="{{ new_user.last_name }}" title="Last Name" placeholder="Last Name"/>
+                <input type="email" name="email" value="{{ new_user.email }}" title="Email" placeholder="email" readonly/>
+                <p id="pCheckPasswordMatch" class="error-text hide">Passwords do not match</p>
+                <input type="password" id="password1" name="password1" title="Password" placeholder="Reset Password" />
+                <input type="password" id="password2" name="password2" title="Repeat Password" placeholder="Password Again" />
+
+                <div id="claimAccount" class="hide text-center"><p><input type="submit" class="inverted-button small" value="Register" /></p></div>
+            </form>
+        </div>
+    </div>
+    <div id="invite_friends" class="hide large-12">
+            <h4 class="page-title text-center"><span>Invite Today before they Run Out.</span></h4>
+            <div class="large-4 large-offset-4">
+            <form id="invite_friends_form" action='' method='post' class="remove-labels">{% csrf_token %}
+                {{ invite_friends_form }}
+                <input type="submit" value='Send Invites' name="invite_friends_submit" class='inverted-button small large-4 large-offset-4'/>
+            </form>
+            <a href="{% url 'user_account' %}" class="inverted-button small large-4 large-offset-4">Continue</a>
+        </div>
+    </div>
+
+    <div id="welcome_to_the_future" class="hide large-12">
+        <div class="large-6 large-offset-3 text-center">
+            <h4 class="page-title text-center"><span>Your Invites Have Been Sent</span></h4>
+            <p class="white">
+                Now it's time to enter the runway.
+            </p>
+            <a href="{% url 'user_account' %}" class="inverted-button small">Visit Site</a>
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+{% block footer_page_javascript %}
+    <script>
+        function checkPasswordMatch() {
+            var password = $("#password1").val();
+            var confirmPassword = $("#password2").val();
+            if (!password || !confirmPassword)
+                $("#claimAccount").addClass("hide");
+            if (password != confirmPassword && password.length > 0 && confirmPassword.length > 0){
+                $("#pCheckPasswordMatch").removeClass("hide");
+                $("#claimAccount").addClass("hide");
+            }
+            else{
+                $("#pCheckPasswordMatch").addClass("hide");
+                $("#claimAccount").removeClass("hide");
+            }
+        }
+
+    </script>
+    <script>
+        $('#claim_account').submit(function(e){
+
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'claim_account_ajax' %}",
+                dataType: "json",
+                data: $(this).serialize(),
+                success: function(data) {
+                    console.log(data);
+                    $('#user_id').val(data);
+                    $("#claim_account_start").fadeOut("slow", function(){
+                        $('#invite_friends').fadeIn('slow');
+                    });
+                    $("#claim_title").fadeOut("fast", function(){
+                        $(this).text("Welcome to the future of Fashion").fadeIn('slow');
+                    });
+                    $("#claim_desc_text").fadeOut("fast", function(){
+                        $('#watch_video').fadeOut();
+                        $(this).html("As a Fashion Amender, you've earned five exclusive beta invites to share with other trendsetters. Every invite claimed earns you a $19.00 credit. <br/>Choose fashionably.").fadeIn('slow');
+                    });
+
+                },
+                error: function(data) {
+                    $("#request_invite").find(".error-text").removeClass('hide');
+                }
+            });
+
+        });
+        $('#invite_friends_form').submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'invite_friends_ajax' %}",
+                dataType: "json",
+                data: $(this).serialize(),
+                success: function(data) {
+                    $("#invite_friends").fadeOut("slow", function(){
+                        $('#welcome_to_the_future').fadeIn('slow');
+                    });
+                },
+                error: function(data) {
+                    console.log('error');
+                }
+            });
+
+        });
+    </script>
+{% endblock footer_page_javascript %}
+
+
+{% block jquery %}
+    $("#password2").keyup(checkPasswordMatch);
+    $("#password1").keyup(checkPasswordMatch);
+{% endblock jquery %}

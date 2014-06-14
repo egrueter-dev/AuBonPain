@@ -1,0 +1,106 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop emerging designer fashion looks online at NineteenthAmendment.com Exclusive and unique clothes from top new brands and designers around the world...">
+    <meta name="keywords" content="designer fashion, designer clothes, designer clothing, designer dresses, emerging designers, exclusive fashion, lookbooks, project runway, Nineteenth Amendment, NineteenthAmendment, 19thAmendment.co, 19thAmendmentco, wholesale, production, USA-Made, Made in the USA">
+    {% block header_snippets %}
+    {% endblock header_snippets %}
+    <title>{% block title %}Nineteenth Amendment | Welcome{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/foundation.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/foundation-icons.css" />
+    <script src="{{ STATIC_URL }}js/vendor/modernizr.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+</head>
+<body {% block body_tag_js%}{% endblock body_tag_js %} class="{% block body_class %}{% endblock body_class %} home page page-template">
+{% load cloudinary %}
+{% block header%}
+    {% include "snippets/header.html" %}
+    {% block extended_header %}
+    {% endblock extended_header %}
+{% endblock %}
+
+
+
+{% block body %}
+    {% block content %}
+        {% block listing %}
+        {% endblock listing %}
+    {% endblock content %}
+{% endblock body %}
+
+{% block footer %}
+    {% include "snippets/footer.html" %}
+{% endblock footer %}
+
+<div id="spinner"></div>
+{#<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>#}
+<script src="{{ STATIC_URL }}js/vendor/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+</script>
+{#<script type="text/javascript" src="https://js.stripe.com/v2/"></script>#}
+</body>
+{% block footer_page_javascript %}
+{% endblock footer_page_javascript %}
+
+<script>
+    $(document).ready(
+            function(){
+                {% block jquery %}{% endblock %}
+
+
+                $(".image-upload-button:file").change(function (){
+                    $(this).parent('div').parent('div').find(".garment-box").remove();
+                });
+                $(".image-upload-button:file").change(function (){
+                    $(this).parent('div').parent('div').find("img").remove();
+                });
+                var cnt = 0;
+                {% for item in existing %}
+                    cnt++;
+                    $('#addRow').parent('td').parent('tr').before('<tr valign="top" class="added_details"><th scope="row"><label for="customFieldName"><select class="placement"><option>Center Front</option><option>Arm Holes</option><option>Cuff</option><option>Hem</option><option>Facing</option><option>Center Back</option><option>Side Seams</option><option>Collar</option></select></label></th><td><input type="radio" class="stitchingDetail" value="clean-finish" /> </td><td><input type="radio" class="stitchingDetail" value="edge-stitch" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="flat-felled-seam" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="top-stitch-1-8" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="top-stitch-1-4" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="top-stitch-1-2" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="double-needle-3-8" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="top-stitch-1-4" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="surging" /> </td><td><a href="#" class="remRow">Remove</a></td></tr>');
+                    var addedRow = $('#addRow').parent('td').parent('tr').prev();
+                    addedRow.find('input').attr('name', 'new'+cnt);
+                    addedRow.find('select').val('{{ item.area }}').attr('name', 'placement'+cnt);
+                    addedRow.find('input').each(function(index, value) {
+                        if ($(value).val() === '{{ item.detail }}') {
+                            $(value).prop('checked', true);
+                        }
+                    });
+                {% endfor %}
+                $("#addRow").click(function(){
+                    var existing = $(".added_details");
+                    var cnt = existing.length + 1;
+                    $(this).parent('td').parent('tr').before('<tr valign="top" class="added_details"><th scope="row"><label for="customFieldName"><select class="placement"><option value="" disabled selected>Placement</option><option>Center Front</option><option>Arm Holes</option><option>Cuff</option><option>Hem</option><option>Facing</option><option>Center Back</option><option>Side Seams</option><option>Collar</option></select></label></th><td><input type="radio" class="stitchingDetail" value="clean-finish" /> </td><td><input type="radio" class="stitchingDetail" value="edge-stitch" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="flat-felled-seam" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="top-stitch-1-8" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="top-stitch-1-4" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="top-stitch-1-2" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="double-needle-3-8" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="top-stitch-1-4" /> </td><td><input type="radio" class="stitchingDetail" id="customFieldName" value="surging" /> </td><td><a href="#" class="remRow">Remove</a></td></tr>');
+                    $new_row = $(this).parent('td').parent('tr').prev();
+                    $new_row.find('input').attr('name', 'new'+cnt);
+                    $new_row.find('select').attr('name', 'placement'+cnt);
+                });
+                $('.form-table').on('click', '.remRow' , function() {
+                    $(this).parent().parent().remove();
+                });
+
+                {% for style_preference in user_style_preferences %}
+                    $('input[value="{{ style_preference.style.style_name }}"]').prop('checked', true);
+                {% endfor %}
+
+                {% for type_preference in user_type_preferences %}
+                    $('input[value="{{ type_preference.type.type_name }}"]').prop('checked', true);
+                {% endfor %}
+            });
+</script>
+
+{#<script>#}
+{#  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){#}
+{#  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),#}
+{#  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)#}
+{#  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');#}
+{##}
+{#  ga('create', 'UA-51729469-1', 'nineteenth-amendment.com');#}
+{#  ga('send', 'pageview');#}
+{##}
+{#</script>#}
+</html>
