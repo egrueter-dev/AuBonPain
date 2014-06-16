@@ -4,43 +4,90 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="large-12 columns home-intro-div">
-        <div class="large-8 large-offset-2 columns">
-            <p class='home-intro-text'>
-                Nineteenth Amendment is a platform for emerging designers. Get exclusive access to independent designer fashion, made just for you in the USA. Support, interact, and discover the next big names in fashion.
-            </p>
-            <div class="clearfix"></div>
-            <a href="{% url 'shop_all_garments' %}" class='small inverted-button inverted-button-home'>Shop Now</a>
-            <div class="clearfix"></div>
-            <p>or <a class="white-link" href="{% url 'designer_register' %}">become a designer</a></p>
-        </div>
-
-    </div>
-    <div class="large-12 columns home-intro-signup">
-        <div class='large-6 columns home-signup-shopper remove-padding'>
-            <h1 class="home-title home-outer-title">Shoppers</h1>
-            <div class="home-shopper-inner large-12 hide">
-                <div class="large-8 large-offset-2">
-                    <h1 class="home-title">Shoppers</h1>
-                    <p>
-                        Directly support and interact with the next wave of fashion designers.  Shop exclusive, USA-made, independently-designed fashion, not found anywhere else.
-                    </p>
-                    <p><a href="{% url 'shop_all_garments' %}" class='small inverted-button inverted-button-home'>Shop Now</a></p>
-
-                </div>
+<div class="fullwidth text-center header-signup-form">
+    <h2 class="white page-title">Simple, Powerful Social Recruiting</h2>
+    <div class="clearfix extramargin"></div>
+    <p class="white">Discover, high quality talent using your own social networks.  <br/>Place more candidates faster and grow your pipeline with HireApp</p>
+    <form class="remove-labels large-10 large-offset-1">
+        <div class="large-6 large-offset-3">
+            <div class="large-8 columns">
+                {{ invitationForm }}
+            </div>
+            <div class="small-only-text-center">
+                <a href="#" class="alert button small right red-button" >Get Invited</a>
             </div>
         </div>
-        <div class='large-6 columns home-signup-designer remove-padding  text-center'>
-            <h1 class="home-title home-outer-title">Designers</h1>
-            <div class="home-designer-inner large-12 hide">
-                <div class="large-8 large-offset-2">
-                    <h1 class="home-title">Designers</h1>
-                    <p>
-                        Sell your designs and connect with buyers and consumers on Nineteenth Amendment, the first fashion marketplace and manufacturing service.
-                    </p>
-                    <p><a href="{% url 'designer_register' %}" class='small inverted-button inverted-button-home'>become a designer</a></p>
-                </div>
-            </div>
+    </form>
+    <div class="clearfix extramargin"></div>
+</div>
+<div class="large-12 extramargin">
+    <div class="large-3 columns text-center">
+        <div class="large-6 large-offset-3">
+            <img class="fullwidth" src="{{ STATIC_URL }}images/social_integration.png" />
         </div>
+        Social Integration
     </div>
+    <div class="large-3 columns text-center">
+        <div class="large-6 large-offset-3">
+            <img class="fullwidth" src="{{ STATIC_URL }}images/analytics_campaign.png" />
+        </div>
+        Analytics & Campaign<br/> Management
+    </div>
+    <div class="large-3 columns text-center">
+        <div class="large-6 large-offset-3">
+            <img class="fullwidth" src="{{ STATIC_URL }}images/multiple_social_accounts.png" />
+        </div>
+        Multiple Social Accounts
+    </div>
+    <div class="large-3 columns text-center">
+        <div class="large-6 large-offset-3">
+            <img class="fullwidth" src="{{ STATIC_URL }}images/job_board.png" />
+        </div>
+        Job Board Syndication
+    </div>
+    <div class="clearfix"></div>
+</div>
+<hr class="large-8 large-offset-2"/>
+<div class="large-10 large-offset-1 home-content">
+    <div class="large-7 columns">
+        <h5 class="title">An Integrated Social Recruiting Platform</h5>
+        <p>HireApp connects your social networks, job boards, and applicant tracking system to your listings, unifying the job search and growing your pipeline.</p>
+    </div>
+    <div class="large-5 columns">
+        <img class="fullwidth" src="{{ STATIC_URL}}images/Social.png" />
+    </div>
+    <div class="clearfix extramargin"></div>
+    <hr class="large-10 large-offset-1"/>
+    <div class="large-5 columns">
+        <img class="fullwidth" src="{{ STATIC_URL}}images/Hires.png" />
+    </div>
+    <div class="large-7 columns">
+        <h5 class="title">Find High Quality Candidates</h5>
+        <p>Leverage you existing social media audience to find the best candidates for you listing.  Source candidates quickly through the followers and connections you already have</p>
+    </div>
+    <div class="clearfix extramargin"></div>
+    <hr class="large-10 large-offset-1 extramargin"/>
+    <div class="large-7 columns">
+        <h5 class="title">Build Relationships through Social Media</h5>
+        <p>Top recruiters know there's more to finding that perfect candidate than blasting out job notifications.  HireApp gives you the power to nurture prospects and grow your contact list using your follower base.</p>
+    </div>
+
+    <div class="large-5 columns">
+        <img class="fullwidth" src="{{ STATIC_URL}}images/Networks.png" />
+    </div>
+    <div class="clearfix extramargin"></div>
+    <hr class="large-10 large-offset-1"/>
+</div>
+<div class="large-12 medium-12 text-center footer-signup-form">
+    <h2>Join Our Free Private Beta</h2>
+    <p>We're changing the way recruiters connect with the best talent.<br/>Join our free beta, start driving revenue through soicla.</p>
+    <form class="remove-labels">
+        <div class="large-4 large-offset-4">
+            <div class="large-8 columns">
+                {{ invitationForm }}
+            </div>
+            <input type="submit" class="alert button small right red-button" value="Get Invited" />
+        </div>
+    </form>
+</div>
 {% endblock content %}
