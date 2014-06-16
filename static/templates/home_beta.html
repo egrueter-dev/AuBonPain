@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-{% block title %}Home | Nineteenth Amendment{% endblock title %}
 {% load staticfiles %}
 
 {% block content %}
@@ -10,11 +9,11 @@
     <p class="white">Discover, high quality talent using your own social networks.  <br/>Place more candidates faster and grow your pipeline with HireApp</p>
     <form class="remove-labels large-10 large-offset-1">
         <div class="large-6 large-offset-3">
-            <div class="large-8 columns">
+            <div class="large-7 large-offset-0 medium-8 medium-offset-2 columns remove-padding">
                 {{ invitationForm }}
             </div>
-            <div class="small-only-text-center">
-                <a href="#" class="alert button small right red-button" >Get Invited</a>
+            <div class="remove-padding large-4 medium-text-center columns">
+                <input type="submit" class="alert button small center" value="Get Invited" />
             </div>
         </div>
     </form>
@@ -81,13 +80,17 @@
 <div class="large-12 medium-12 text-center footer-signup-form">
     <h2>Join Our Free Private Beta</h2>
     <p>We're changing the way recruiters connect with the best talent.<br/>Join our free beta, start driving revenue through soicla.</p>
+    <div class="extramargin"></div>
     <form class="remove-labels">
-        <div class="large-4 large-offset-4">
-            <div class="large-8 columns">
+         <div class="large-6 large-offset-3">
+            <div class="large-7 large-offset-0 medium-8 medium-offset-2 columns remove-padding">
                 {{ invitationForm }}
             </div>
-            <input type="submit" class="alert button small right red-button" value="Get Invited" />
+            <div class="remove-padding large-4 medium-text-center columns">
+                <a href="#" class="alert button small center" >Get Invited</a>
+            </div>
         </div>
     </form>
 </div>
+
 {% endblock content %}

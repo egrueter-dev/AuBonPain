@@ -1,9 +1,0 @@
-We are excited to announce that it's time to upload your tech packs and finish your Virtual Showroom! Please log into you account using this link: {{ site }}{% url 'claim_account' email %}  for security reasons please input your password twice.
-
-With our launch around the corner we ask that you do not yet share this virtual studio link with anyone outside of your brand.
-
-Once you log in, you will be guided around your virtual studio. We have made it easy for you save information on your dashboard and come back to it later if needed. The tech pack upload process is designed to be very intuitive. In order to have your virtual studio ready for launch please finish your tech pack by Saturday, April 26th. This ensures that we can price everything before going live.
-
-As always, please contact me if you have questions or feedback - we want to make this the best possible experience for you!
-
-Amanda

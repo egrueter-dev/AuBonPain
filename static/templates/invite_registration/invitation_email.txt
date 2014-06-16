@@ -1,4 +1,0 @@
-{{ invitation.user.email }} invited you to join Nineteenth Amendment!
-
-Register at {{site}}{% url 'register_from_invite' %} with the code : {{ invitation.code }}
-
