@@ -52,6 +52,6 @@ def deploy():
     # Now lets pull the changes to the server
     run("cd %s; git pull" % env.remote_app_dir)
     # And lastly update static media files
-    migrate()
+    # migrate()
     collectstatic()
     restart()
