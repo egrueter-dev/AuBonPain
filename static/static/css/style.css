@@ -10,12 +10,28 @@
     background-color: #ffffff;
 }
 
-.top-bar {
-    border-bottom: 1px solid #979797;
-}
-
 .remove-labels label {
     display: none;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+    background-color:transparent;
+    color: #0a2248;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+    background-color:transparent;
+    text-decoration: underline;
+    color: #0a2248;
+}
+
+@media only screen and (min-width: 40.063em) {
+    .top-bar-section li:not(.has-form) a:not(.button) {
+        line-height: 62px;
+    }
+}
+.top-bar-section ul li > a {
+    font-size: 1rem;
 }
 
 form input[type=text], form input[type=email] {
@@ -54,7 +70,7 @@ form input[type=text], form input[type=email] {
 }
 
 .extramargin {
-    margin:2rem 0;
+    margin:3rem 0;
 }
 
 .extramargin-small {
@@ -79,7 +95,7 @@ p, a, input[type=submit] {
 }
 
 .home-content p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-top: 4rem;
 }
 
@@ -108,6 +124,10 @@ h5.title {
 
 .top-bar .toggle-topbar.menu-icon a {
     color: #0a2248;
+}
+
+.top-bar-section ul li > a.button.alert {
+    border: 1px solid #f04124;
 }
 
 .top-bar-section ul li {
