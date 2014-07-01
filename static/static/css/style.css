@@ -1,16 +1,10 @@
-@font-face {
-    font-family: AvenirNext;
-    src: url(../fonts/avenirnext.ttf);
-    font-weight: lighter;
-}
-
 * {
     padding: 0; /* Standard Reset, and we're adding box-sizing:border-box because it's awesome. */
     margin: 0;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    font-family: AvenirNext, sans-serif;
+    font-family: HelveticaNeue-Light;
 }
 
 
