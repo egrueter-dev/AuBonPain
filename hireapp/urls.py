@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^home/beta/', 'invite_registration.views.home_beta', name='home_beta'),
     url(r'^admin/', include(admin.site.urls)),
     (r'^beta/', include('invite_registration.urls')),
+   (r'^accounts/', include('invite_registration.backends.invite_only.urls')),
 
 )
