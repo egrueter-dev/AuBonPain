@@ -1,10 +1,19 @@
+@font-face {
+    font-family: AvenirNext;
+    src: url(../fonts/avenir_next.ttf);
+    font-weight: lighter;
+}
+
 * {
     padding: 0; /* Standard Reset, and we're adding box-sizing:border-box because it's awesome. */
     margin: 0;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    font-family: AvenirNext, sans-serif;
 }
+
+
 
 .top-bar, .top-bar-section ul  {
     background-color: #ffffff;

@@ -1,22 +1,32 @@
 <nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="name">
-        <h1 class="hide-for-small-only"><a href="/"></a></h1>
-    </li>
-     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-  </ul>
-
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-      <li><a href="http://blog.hireapp.co">Blog</a></li>
-      <li class="header_buttons"><a href="#" class="red-button alert button expand">Join</a></li>
-      <li class="header_buttons"><a href="#" class="white-button button small">Sign In</a></li>
+    <ul class="title-area">
+        <li class="name">
+            <h1 class="hide-for-small-only"><a href="/"></a></h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
 
-    <!-- Left Nav Section -->
-    <ul class="left">
-    </ul>
-  </section>
+    <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+            <li><a href="http://blog.hireapp.co">Blog</a></li>
+            {% if user.is_authenticated %}
+            <li class="has-dropdown">
+                <a>{{ user.username }}</a>
+                <ul class="dropdown">
+                    <li><a href='#'>{{ user.username }}</a></li>
+                    <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                </ul>
+            </li>
+            {% else %}
+            <li class="header_buttons"><a href="#" class="red-button alert button expand">Join</a></li>
+            <li class="header_buttons"><a href="{% url 'auth_login' %}" class="white-button button small">Sign In</a></li>
+            {% endif %}
+        </ul>
+
+        <!-- Left Nav Section -->
+        <ul class="left">
+        </ul>
+    </section>
 </nav>
