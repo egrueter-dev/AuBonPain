@@ -23,14 +23,16 @@ def home_beta(request, form_class=InvitationForm):
     Allow a user to request an invite at a later date by entering their email address.
     """
     if request.method == 'POST':
+        print request.POST
         form = form_class(request.POST)
         if form.is_valid():
             email = request.POST['email']
-            InviteRequest.objects.get_or_create(email=request.POST['email'])
-            new_user = User.objects.create_user(username=email, email=email)
-            if not request.is_ajax():
-                return HttpResponseRedirect(REDIRECT_URL)
-            response = new_user.id
+            request, created = InviteRequest.objects.get_or_create(email=request.POST['email'])
+            if created:
+                response = ({'created' : 'success', 'not_created': 'no'})
+            if not created:
+                response = ({'created' : 'false', 'not_created' : 'yes'})
+
             data = json.dumps(response)
             return HttpResponse(data, content_type="application/json")
         else:

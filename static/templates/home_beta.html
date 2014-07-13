@@ -112,7 +112,15 @@
                 dataType: "json",
                 data: $(this).serialize(),
                 success: function(data) {
-                    $('.thanks_for_submitting').fadeIn('slow');
+
+                    if(data.created == 'success'){
+                        $('.thanks_for_submitting').find('p').html("Thanks for signing up!");
+                        $('.thanks_for_submitting').fadeIn('slow');
+                    }
+                    else if(data.not_created == 'yes') {
+                        $('.thanks_for_submitting').find('p').html("Email Already Exists");
+                        $('.thanks_for_submitting').fadeIn('slow');
+                    }
                 },
                 error: function(data) {
                     $("#request_invite").find(".error-text").removeClass('hide');
