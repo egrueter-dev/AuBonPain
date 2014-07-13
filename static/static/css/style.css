@@ -4,9 +4,28 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    font-family: HelveticaNeue-Light;
+    font-family: 'Lato', sans-serif;;
 }
 
+.h2 {
+
+    font-family: 'Lato:400', sans-serif;
+
+}
+
+.h5 {
+
+
+    font-family: 'Lato:400', sans-serif;
+
+}
+
+.p {
+
+     font-family: 'Lato:300', sans-serif;
+
+
+}
 
 
 .top-bar, .top-bar-section ul  {

@@ -9,8 +9,7 @@
 
     <section class="top-bar-section">
         <!-- Right Nav Section -->
-        <ul class="right">
-            <li><a href="http://blog.hireapp.co">Blog</a></li>
+        <ul class="right">  <!-- removed blog link (Erik) -->
             {% if user.is_authenticated %}
             <li class="has-dropdown">
                 <a>{{ user.username }}</a>
@@ -20,7 +19,7 @@
                 </ul>
             </li>
             {% else %}
-            <li class="header_buttons"><a href="#" class="red-button alert button expand">Join</a></li>
+            <li class="header_buttons"><a href="#" class="red-button alert button expand">Create Free Account</a></li>
             <li class="header_buttons"><a href="{% url 'auth_login' %}" class="white-button button small">Sign In</a></li>
             {% endif %}
         </ul>
