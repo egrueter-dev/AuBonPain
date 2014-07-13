@@ -23,7 +23,6 @@ def home_beta(request, form_class=InvitationForm):
     Allow a user to request an invite at a later date by entering their email address.
     """
     if request.method == 'POST':
-        print request.POST
         form = form_class(request.POST)
         if form.is_valid():
             email = request.POST['email']
