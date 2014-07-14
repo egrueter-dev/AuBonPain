@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<div class="fullwidth text-center header-signup-form">
+    <h2 class="white page-title">Simple, Powerful Social Recruiting</h2>
+    <p class="white">Leverage your social networks to find the best candidates </p>
+    <br>
+   <div class="row">
+
+      <div class="small-5 columns">
+
+        <img height="5" style="padding:10px; height:60px;" src="/static/images/red-circle.png"> <a class="white"> Connect your team's social accounts</a>
+        <br>
+        <img height="5" style="padding:10px; height:60px;" src="/static/images/yellow-circle.png"> <a class="white"> Post open jobs to your networks</a>
+        <br>
+         <img height="5" style="padding:10px; padding-left:19px; height:60px;" src="/static/images/green-circle.png"> <a class="white"> Discover & nurture high quality talent</a>
+
+        <p class="white" align="left" style="padding-left:20px; padding-top:20px; line-height:1.2em; text-color:white;">
+          HireApp lets you leverage multiple social networks to quickly
+        reach high quality candidates at a fraction of the cost of job boards. 
+        </p>
+      </div>
+
+      <div style="padding-top:70px" class="small-7 columns">
+
+      <form placeholder="Inline Text Input" class="remove-labels large-10 large-offset-1" method="post">{% csrf_token %}
+        <div class="large-6 large-offset-3">
+            <div class="hide thanks_for_submitting white"><p>Thanks for signing up!</p></div>
+            <div class="large-7 columns" style="width:150%">
+                {{ invitationForm }}
+            </div>
+            
+            <div style="padding-right:60px;" class="large-4 small-text-center columns">
+                <input type="submit" class="alert button medium right" value="Get Invited" />
+                <a class"white"> Claim your free account </a>
+            </div>
+        </div>
+    </form>
+
+      </div>
+
+</div>
+
+
+
+    </div>
+       
+
+    </div>
+    <div class="clearfix extramargin"></div>
+</div>
+<div class="large-12 extramargin">
+        <div class="large-8 large-offset-2">
+            <img class="fullwidth" src="{{ STATIC_URL }}images/Logos-press.png" />
+    <div class="clearfix"></div>
+    </form>
+</div>
+
+{% endblock content %}
+
+{% block footer_page_javascript %}
+    <script>
+        $('.invitation_form').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'home_beta' %}",
+                dataType: "json",
+                data: $(this).serialize(),
+                success: function(data) {
+                    $('.thanks_for_submitting').fadeIn('slow');
+                },
+                error: function(data) {
+                    $("#request_invite").find(".error-text").removeClass('hide');
+                }
+            });
+        });
+    </script>
+{% endblock footer_page_javascript %}

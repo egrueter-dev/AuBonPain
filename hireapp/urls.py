@@ -11,8 +11,9 @@ urlpatterns = patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^$', 'invite_registration.views.home_beta', name='home'),
     url(r'^home/beta/', 'invite_registration.views.home_beta', name='home_beta'),
+    url(r'^home/v2/', 'invite_registration.views.home_beta_2', name='home_beta_2'),
     url(r'^admin/', include(admin.site.urls)),
     (r'^beta/', include('invite_registration.urls')),
-   (r'^accounts/', include('invite_registration.backends.invite_only.urls')),
+    (r'^accounts/', include('invite_registration.backends.invite_only.urls')),
 
 )

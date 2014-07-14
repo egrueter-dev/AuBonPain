@@ -43,6 +43,38 @@ def home_beta(request, form_class=InvitationForm):
 
     return render_to_response('home_beta.html', locals(), context_instance=RequestContext(request))
 
+#Added Home_beta_2 Erik
+
+def home_beta_2(request, form_class=InvitationForm):
+    import json
+    invitationForm = InvitationForm(data=None)
+    registrationForm = RegistrationFormInvitation(data=request.POST or None)
+    loginForm = AuthenticationForm(data=request.POST or None)
+    """
+    Allow a user to request an invite at a later date by entering their email address.
+    """
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            request, created = InviteRequest.objects.get_or_create(email=request.POST['email'])
+            if created:
+                response = ({'created' : 'success', 'not_created': 'no'})
+            if not created:
+                response = ({'created' : 'false', 'not_created' : 'yes'})
+
+            data = json.dumps(response)
+            return HttpResponse(data, content_type="application/json")
+        else:
+            if not request.is_ajax():
+                return HttpResponseRedirect(REDIRECT_URL)
+            response = ({'success':False})
+            json = json.dumps(response, ensure_ascii=False)
+            return Http404
+
+    return render_to_response('home_beta_2.html', locals(), context_instance=RequestContext(request))
+
+##########
 
 def request_invite(request, form_class=InvitationForm):
     """

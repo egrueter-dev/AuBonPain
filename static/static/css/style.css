@@ -116,6 +116,11 @@ form input[type=text], form input[type=email] {
     color:#ffffff;
 }
 
+.grey {
+    color:#CCCCCC;
+}
+
+
 .page-title {
     font-weight:400;
     font-family: Lato, sans-serif;
@@ -136,8 +141,7 @@ h5.title {
 }
 
 .footer {
-    background-color:#55a1ea;
-    border-top: 10px solid #0a2248;
+    background-color:white;
     padding: 1rem 0 4rem 0;
     margin-top: 2.5rem;
 }
