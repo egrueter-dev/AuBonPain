@@ -20,7 +20,6 @@ class InviteRequest(models.Model):
     def __unicode__(self):
         return self.email
     
-    
 class Invitation(models.Model):
     """
     Invitation model
