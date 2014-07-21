@@ -24,7 +24,9 @@
 
       <div style="padding-top:70px" class="small-7 columns">
 
-      <form placeholder="Inline Text Input" class="remove-labels large-10 large-offset-1" method="post">{% csrf_token %}
+<!-- 
+    <form class="remove-labels invitation_form" method="post">{% csrf_token %}
+      <div class="remove-labels large-10 large-offset-1" method="post">{% csrf_token %}
         <div class="large-6 large-offset-3">
             <div class="hide thanks_for_submitting white"><p>Thanks for signing up!</p></div>
             <div class="large-7 columns" style="width:150%">
@@ -35,7 +37,25 @@
                 <input onClick="_gaq.push(['_trackEvent', 'Forms', 'Submit', 'Beta-Invitation']);" type="submit" class="alert button medium right" value="Get Invited" /> 
             </div>
         </div>
-    </form>       
+    </form>    -->    
+
+<!-- original form -->
+
+    <form class="remove-labels invitation_form" method="post">{% csrf_token %}
+        <div class="hide thanks_for_submitting"><p>Thanks for signing up!</p></div>
+         <div class="large-6 large-offset-3">
+            <div class="large-7 large-offset-0 medium-8 medium-offset-2 columns remove-padding">
+                {{ invitationForm }}
+            </div>
+            <div class="remove-padding large-4 medium-text-center columns">
+                <input type="submit" class="alert button small center" value="Get Invited" ></a>
+            </div>
+        </div>
+    </form>
+
+
+<!-- original form -->
+
 
       </div>
       <a class="white"> Claim your free account today</a>
@@ -58,17 +78,26 @@
 
 {% endblock content %}
 
+
 {% block footer_page_javascript %}
     <script>
         $('.invitation_form').on('submit', function(e){
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "{% url 'home_beta' %}",
+                url: "{% url 'home_beta_2' %}",
                 dataType: "json",
                 data: $(this).serialize(),
                 success: function(data) {
-                    $('.thanks_for_submitting').fadeIn('slow');
+
+                    if(data.created == 'success'){
+                        $('.thanks_for_submitting').find('p').html("Thanks for signing up!");
+                        $('.thanks_for_submitting').fadeIn('slow');
+                    }
+                    else if(data.not_created == 'yes') {
+                        $('.thanks_for_submitting').find('p').html("Email Already Exists");
+                        $('.thanks_for_submitting').fadeIn('slow');
+                    }
                 },
                 error: function(data) {
                     $("#request_invite").find(".error-text").removeClass('hide');
